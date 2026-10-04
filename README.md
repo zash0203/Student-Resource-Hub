@@ -53,7 +53,6 @@ All endpoints are under `/api`. The health endpoint is available before MongoDB 
 
 1. Choose a MongoDB host (local MongoDB or MongoDB Atlas).
 2. Copy `backend/.env.example` to `backend/.env` and set `MONGODB_URI`.
-3. Restart the backend and run `npm run seed` from `backend/` to load the starter categories/resources.
-4. Verify `/api/health` reports `"database":"connected"` and test the data endpoints.
+3. Start the frontend with `npm run dev`.
+4. Restart the backend and run `npm run dev` from `backend/` to load the backend.
 
-Never commit `backend/.env` or put database credentials in source control.
