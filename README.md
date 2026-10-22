@@ -1,4 +1,4 @@
-# Study Hub
+# Study Hub 
 
 The project is split into two independent apps:
 
