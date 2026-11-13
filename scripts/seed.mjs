@@ -1,7 +1,9 @@
-import "dotenv/config";
+import nextEnv from "@next/env";
 import mongoose from "mongoose";
-import Category from "./models/Category.js";
-import Resource from "./models/Resource.js";
+import Category from "../lib/models/Category.js";
+import Resource from "../lib/models/Resource.js";
+
+nextEnv.loadEnvConfig(process.cwd());
 
 const catalog = [
   {
@@ -57,7 +59,7 @@ const catalog = [
 ];
 
 if (!process.env.MONGODB_URI) {
-  console.error("MONGODB_URI is required. Copy .env.example to .env and configure MongoDB.");
+  console.error("MONGODB_URI is required. Configure it in the root .env.local file.");
   process.exit(1);
 }
 

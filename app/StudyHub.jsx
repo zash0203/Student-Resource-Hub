@@ -41,7 +41,7 @@ function App() {
         setResources(resourceData);
       } catch (loadError) {
         if (loadError.name !== "AbortError") {
-          setError(`${loadError.message} The Study Hub API must also be available.`);
+          setError(loadError.message);
         }
       } finally {
         if (!controller.signal.aborted) setLoading(false);

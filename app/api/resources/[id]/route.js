@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-import Resource from "../../../../backend/src/models/Resource.js";
+import Resource from "../../../../lib/models/Resource.js";
 import { ApiError, readJson, withDatabase } from "../../../../lib/api.js";
 
 export const dynamic = "force-dynamic";

@@ -1,4 +1,4 @@
-import StudyHub from "../front end/src/App.jsx";
+import StudyHub from "./StudyHub.jsx";
 
 export default function Home() {
   return <StudyHub />;

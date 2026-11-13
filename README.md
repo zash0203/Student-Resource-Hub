@@ -1,6 +1,6 @@
 # Study Hub
 
-Study Hub is a Next.js app with a MongoDB-backed API. The website and API can be deployed together to Vercel; MongoDB Atlas stores the data.
+Study Hub is a single Next.js project with a MongoDB-backed API. The website and API can be deployed together to Vercel; MongoDB Atlas stores the data. The App Router pages, API routes, Mongoose models, and database seeder all live in this project.
 
 ## Run locally
 
@@ -22,6 +22,7 @@ Use Node.js 20.9 or newer and npm.
 3. Open <http://localhost:3000>.
 
 The app can start without `MONGODB_URI`, but the data endpoints return `503` until a database is configured.
+To load the starter categories and resources into MongoDB, run `npm run seed` from the repository root after configuring `.env.local`.
 
 ## API
 
@@ -49,5 +50,3 @@ All API routes are served by Next.js from the same origin:
 4. Open `https://YOUR-VERCEL-DOMAIN/api/health` and confirm it reports `"database":"connected"`.
 
 The frontend calls `/api` on the same Vercel deployment, so there is no separate backend service or frontend URL setting.
-
-The original Express server remains under `backend/` but is no longer used or deployed. Its Mongoose models are shared with the Next.js API, and its starter data seeder is optional if you want to add sample categories and resources later. The database can be empty.
