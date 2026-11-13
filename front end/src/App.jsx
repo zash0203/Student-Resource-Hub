@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect, useMemo, useState } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
+const API_URL = "/api";
 const tips = [
   { text: "Don't wait until the week before finals to find good resources — ask people in your program in week one where they actually go.", source: "3rd-year Business student" },
   { text: "The TMU library subject guides are underrated. A librarian already organized the good sources for your exact course.", source: "4th-year Engineering student" },
@@ -39,7 +41,7 @@ function App() {
         setResources(resourceData);
       } catch (loadError) {
         if (loadError.name !== "AbortError") {
-          setError(`${loadError.message} The Express API must also be running.`);
+          setError(`${loadError.message} The Study Hub API must also be available.`);
         }
       } finally {
         if (!controller.signal.aborted) setLoading(false);
@@ -171,7 +173,7 @@ function App() {
               <li><a href="https://www.torontomu.ca/career-boost/" target="_blank" rel="noopener noreferrer">Career Boost</a></li>
             </ul></div>
           </div>
-          <div className="footer-bottom"><span>Study Hub · Student resource directory</span><span>Built with React, Express &amp; MongoDB</span></div>
+          <div className="footer-bottom"><span>Study Hub · Student resource directory</span><span>Built with Next.js &amp; MongoDB</span></div>
         </div>
       </footer>
     </>

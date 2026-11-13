@@ -1,58 +1,53 @@
-# Study Hub 
+# Study Hub
 
-The project is split into two independent apps:
-
-- `front end/` — React + Vite student resource directory
-- `backend/` — Express API with resource/category routes and MongoDB models ready for later
-
-The Express server and React frontend can run now. MongoDB is intentionally not configured yet; resource and category API requests return `503` until a database is connected.
+Study Hub is a Next.js app with a MongoDB-backed API. The website and API can be deployed together to Vercel; MongoDB Atlas stores the data.
 
 ## Run locally
 
-Use Node.js 20 or newer and npm. Open two terminals in the project folder.
+Use Node.js 20.9 or newer and npm.
 
-**Terminal 1 — backend**
+1. Create a root-level `.env.local` file with your MongoDB connection string:
 
-```powershell
-cd backend
-npm install
-npm run dev
-```
+   ```text
+   MONGODB_URI=mongodb+srv://...
+   ```
 
-The API starts at <http://localhost:5000>. Check <http://localhost:5000/api/health> for its status.
+   Keep this file private; it is ignored by Git.
+2. From the repository root, install dependencies and start Next.js:
 
-**Terminal 2 — frontend**
+   ```powershell
+   npm install
+   npm run dev
+   ```
+3. Open <http://localhost:3000>.
 
-```powershell
-cd "front end"
-npm install
-npm run dev
-```
-
-Open the local URL printed by Vite (usually <http://localhost:5173>).
+The app can start without `MONGODB_URI`, but the data endpoints return `503` until a database is configured.
 
 ## API
 
-All endpoints are under `/api`. The health endpoint is available before MongoDB is configured; data endpoints return `503` until connected.
+All API routes are served by Next.js from the same origin:
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
-| GET | `/api/health` | API and database configuration status |
+| GET | `/api/health` | App and database status |
 | GET | `/api/categories` | List categories with resource counts |
 | GET | `/api/categories/:id` | Get a category |
-| POST | `/api/categories` | Create a category (`name`, `slug`, optional `description`, `emoji`) |
+| POST | `/api/categories` | Create a category |
 | PUT | `/api/categories/:id` | Update a category |
 | DELETE | `/api/categories/:id` | Delete an empty category |
 | GET | `/api/resources` | List resources; optionally filter with `?category=courses` or `?q=LeetCode` |
 | GET | `/api/resources/:id` | Get a resource |
-| POST | `/api/resources` | Create a resource (`name`, HTTP(S) `url`, `category` id, optional `description`, `tag`) |
+| POST | `/api/resources` | Create a resource |
 | PUT | `/api/resources/:id` | Update a resource |
 | DELETE | `/api/resources/:id` | Delete a resource |
 
-## Remaining for database-backed data
+## Deploy for free
 
-1. Choose a MongoDB host (local MongoDB or MongoDB Atlas).
-2. Copy `backend/.env.example` to `backend/.env` and set `MONGODB_URI`.
-3. Start the frontend with `npm run dev`.
-4. Restart the backend and run `npm run dev` from `backend/` to load the backend.
+1. Create a MongoDB Atlas **Free** cluster and copy its connection string.
+2. Import this repository into Vercel. Use the repository root as the project root.
+3. In Vercel project settings, add `MONGODB_URI` with the Atlas connection string, then deploy.
+4. Open `https://YOUR-VERCEL-DOMAIN/api/health` and confirm it reports `"database":"connected"`.
 
+The frontend calls `/api` on the same Vercel deployment, so there is no separate backend service or frontend URL setting.
+
+The original Express server remains under `backend/` but is no longer used or deployed. Its Mongoose models are shared with the Next.js API, and its starter data seeder is optional if you want to add sample categories and resources later. The database can be empty.

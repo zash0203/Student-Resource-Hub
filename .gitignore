@@ -1,6 +1,11 @@
 node_modules/
 dist/
 backend/.env
+.env*
+!.env.example
+.next/
+.vercel/
+out/
 npm-debug.log*
 /assigments/
 /*.zip
