@@ -31,4 +31,4 @@ const resourceSchema = new mongoose.Schema(
 
 resourceSchema.index({ category: 1, name: 1 });
 
-export default mongoose.model("Resource", resourceSchema);
+export default mongoose.models.Resource || mongoose.model("Resource", resourceSchema);

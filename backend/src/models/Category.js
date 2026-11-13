@@ -18,4 +18,4 @@ const categorySchema = new mongoose.Schema(
 
 categorySchema.index({ slug: 1 }, { unique: true });
 
-export default mongoose.model("Category", categorySchema);
+export default mongoose.models.Category || mongoose.model("Category", categorySchema);
